@@ -14,7 +14,7 @@ plugins {
 }
 
 subprojects {
-    group = "moe.victorious3"
+    group = "moe.nightfall"
     version = "0.0.1-SNAPSHOT" // TODO: load from properties or so
 
     repositories {
