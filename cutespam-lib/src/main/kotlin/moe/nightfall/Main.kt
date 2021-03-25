@@ -14,15 +14,21 @@ fun main() {
     val databaseFile = File("db.sqlite")
     val runMigrations = databaseFile.exists()
     val driver: SqlDriver = JdbcSqliteDriver("jdbc:sqlite:${databaseFile.path}")
-    logger.info("current schema version: ${Database.Schema.version}")
+    logger.info { "current schema version: ${Database.Schema.version}" }
     val database = Database(driver)
 
     if (runMigrations) {
         val oldSchemaVersion = database.schemaQueries.getCurrent().executeAsOne().last?.toInt() ?: 0
-        Database.Schema.migrate(driver, oldSchemaVersion, Database.Schema.version)
+        logger.info {"migrations $oldSchemaVersion → ${Database.Schema.version}"}
+        (oldSchemaVersion..Database.Schema.version).zipWithNext { prevVersion, nextVersion ->
+            logger.info {"migrating $prevVersion → $nextVersion"}
+            Database.Schema.migrate(driver, prevVersion, nextVersion)
+            nextVersion
+        }
+//        Database.Schema.migrate(driver, oldSchemaVersion, Database.Schema.version)
         database.schemaQueries.setCurrent(Database.Schema.version)
     } else {
-        logger.info("creating database")
+        logger.info { "creating database" }
         Database.Schema.create(driver)
         database.schemaQueries.setCurrent(Database.Schema.version)
     }
