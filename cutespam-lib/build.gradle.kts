@@ -9,6 +9,7 @@ dependencies {
     implementation(kotlin("stdlib", "_"))
     // https://mvnrepository.com/artifact/com.github.kilianB/JImageHash
     implementation("com.github.kilianB:JImageHash:_")
+    implementation("org.jsoup:jsoup:_")
 
     api(Ktor.client.cio)
 
