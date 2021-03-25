@@ -1,0 +1,7 @@
+getCurrent:
+    SELECT MAX(version) AS last
+    FROM schema;
+
+setCurrent:
+INSERT INTO schema(version)
+VALUES (?);

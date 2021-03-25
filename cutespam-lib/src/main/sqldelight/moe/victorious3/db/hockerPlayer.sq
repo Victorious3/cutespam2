@@ -1,0 +1,11 @@
+selectAll:
+SELECT *
+FROM hockeyPlayer;
+
+insert:
+INSERT INTO hockeyPlayer(player_number, full_name)
+VALUES (?, ?);
+
+insertFullPlayerObject:
+INSERT INTO hockeyPlayer(player_number, full_name)
+VALUES ?;

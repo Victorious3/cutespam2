@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<configuration debug="false">
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>
+                %-55(%d{HH:mm:ss.SSS} [%thread] %-20(.\(%F:%L\))) %-5level - %msg {%mdc} %n
+            </pattern>
+        </encoder>
+    </appender>
+    <appender name="ASYNC-STDOUT" class="ch.qos.logback.classic.AsyncAppender" queueSize="2048">
+        <appender-ref ref="STDOUT"/>
+    </appender>
+
+    <logger name="moe.victorious3" level="DEBUG"/>
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>
