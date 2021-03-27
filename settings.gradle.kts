@@ -2,6 +2,8 @@ import de.fayard.refreshVersions.bootstrapRefreshVersions
 
 pluginManagement {
     repositories {
+        google()
+        jcenter()
         gradlePluginPortal()
         mavenCentral()
         maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
@@ -17,5 +19,6 @@ bootstrapRefreshVersions()
 
 rootProject.name = "cutespam2"
 
-include(":cutespam-lib")
-include(":cutespam-desktop")
+include(":desktop")
+include(":shared")
+include(":androidApp")
