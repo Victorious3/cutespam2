@@ -3,6 +3,7 @@ plugins {
     kotlin("jvm")
     kotlin("plugin.serialization")
     id("com.squareup.sqldelight")
+    application
 }
 
 dependencies {
@@ -43,6 +44,9 @@ tasks.test {
     }
 }
 
+application {
+    mainClass.set("moe.nightfall.DatabaseTestKt")
+}
 
 //tasks.withType<KotlinCompile>() {
 //    kotlinOptions.jvmTarget = "11"
@@ -51,6 +55,7 @@ tasks.test {
 sqldelight {
     database("Database") {
         packageName = "moe.nightfall.db"
+        deriveSchemaFromMigrations = true
 
 //        schemaOutputDirectory = file("src/main/sqldelight/databases")
     }
