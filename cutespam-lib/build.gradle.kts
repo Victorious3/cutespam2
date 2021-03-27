@@ -18,6 +18,9 @@ dependencies {
     api(KotlinX.coroutines.core)
     api(KotlinX.coroutines.jdk8)
 
+    // TODO: use -android on android
+    implementation("net.devrieze:xmlutil-serialization-jvm:_")
+
     implementation(Square.sqlDelight.drivers.jdbcSqlite)
 //    implementation(Square.sqlDelight.coroutinesExtensions) // seems to miss `:_`
     implementation("com.squareup.sqldelight:coroutines-extensions:_")
@@ -27,7 +30,19 @@ dependencies {
     api("org.slf4j:slf4j-api:_") {
         version { strictly("1.7.25") }
     }
+
+    testImplementation(platform("org.junit:junit-bom:5.7.1"))
+    testImplementation("org.junit.jupiter:junit-jupiter")
+    testImplementation("io.kotest:kotest-assertions-core:_")
 }
+
+tasks.test {
+    useJUnitPlatform()
+    testLogging {
+        events("passed", "skipped", "failed")
+    }
+}
+
 
 //tasks.withType<KotlinCompile>() {
 //    kotlinOptions.jvmTarget = "11"

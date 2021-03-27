@@ -2,15 +2,22 @@ package moe.nightfall
 
 import java.util.*
 
-enum class Rating(val rating: String) {
-    Safe("s"),
-    Nudity("n"),
-    Questionable("q"),
-    Explicit("e");
+enum class Rating(val label: String) {
+    s("Safe"),
+    n("Nudity"),
+    q("Questionable"),
+    e("Explicit");
+
+    override fun toString(): String = label
 
     companion object {
+        val Safe = s
+        val Nudity = n
+        val Questionable = q
+        val Explicit = e
         fun ratingOf(rating: String): Rating {
-            return values().find { it.rating == rating } ?: throw IllegalArgumentException()
+            return valueOf(rating)
+//            return values().find { it.name == rating } ?: throw IllegalArgumentException()
         }
     }
 }

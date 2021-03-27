@@ -18,10 +18,10 @@ subprojects {
     version = "0.0.1-SNAPSHOT" // TODO: load from properties or so
 
     repositories {
-        jcenter()
         mavenCentral()
         maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
-        maven("https://nikky.moe/maven")
+//        maven("https://nikky.moe/maven")
+        jcenter()
     }
 
     tasks.withType<KotlinCompile>() {
