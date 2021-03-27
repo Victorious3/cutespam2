@@ -1,7 +1,5 @@
 package moe.nightfall
 
-import java.lang.IllegalArgumentException
-import java.time.LocalDateTime
 import java.util.*
 
 enum class Rating(val rating: String) {
@@ -17,36 +15,38 @@ enum class Rating(val rating: String) {
     }
 }
 
-class CuteMeta(
-    var uid: UUID? = null,
-    var hash: String? = null,
-    var caption: String? = null,
-    var authors: MutableSet<String> = mutableSetOf(),
-    var keywords: MutableSet<String> = mutableSetOf(),
-    var source: String? = null,
-    var group_uid: UUID? = null,
-    var collections: MutableSet<String> = mutableSetOf(),
-    var rating: Rating? = null,
+data class CuteMeta(
+    val uid: UUID? = null,
+    val hash: String? = null,
+    val caption: String? = null,
+    val authors: Set<String> = emptySet(),
+    val keywords: Set<String> = emptySet(),
+    val source: String? = null,
+    val group_uid: UUID? = null,
+    val collections: Set<String> = emptySet(),
+    val rating: Rating? = null,
 
-    var date: Date? = null,
-    var last_updated: Date? = null,
+    val date: Date? = null,
+    val last_updated: Date? = null,
 
-    var source_other: MutableSet<String> = mutableSetOf(),
-    var source_via: MutableSet<String> = mutableSetOf()
+    val source_other: Set<String> = emptySet(),
+    val source_via: Set<String> = emptySet(),
 ) {
-    fun plusAssign(other: CuteMeta) {
-        this.uid = other.uid ?: this.uid
-        this.hash = other.hash ?: this.hash
-        this.caption = other.caption ?: this.caption
-        this.authors.addAll(other.authors)
-        this.keywords.addAll(other.keywords)
-        this.source = other.source ?: this.source
-        this.group_uid = other.group_uid ?: this.group_uid
-        this.collections.addAll(other.collections)
-        this.rating = other.rating ?: this.rating
-        this.date = other.date ?: this.date
-        this.last_updated = Date()
-        this.source_other.addAll(other.source_other)
-        this.source_via.addAll(other.source_via)
+    operator fun plus(other: CuteMeta): CuteMeta {
+        return copy(
+            uid = other.uid ?: this.uid,
+            hash = other.hash ?: this.hash,
+            caption = other.caption ?: this.caption,
+            authors = authors + other.authors,
+            keywords = keywords + other.keywords,
+            source = other.source ?: this.source,
+            group_uid = other.group_uid ?: this.group_uid,
+            collections = collections + other.collections,
+            rating = other.rating ?: this.rating,
+            date = other.date ?: this.date,
+            last_updated = Date(),
+            source_other = source_other + other.source_other,
+            source_via = source_via + other.source_via,
+        )
     }
 }

@@ -25,9 +25,7 @@ dependencies {
     api("io.github.microutils:kotlin-logging:_")
     api("ch.qos.logback:logback-classic:_")
     api("org.slf4j:slf4j-api:_") {
-        version {
-            strictly("1.7.25")
-        }
+        version { strictly("1.7.25") }
     }
 }
 
