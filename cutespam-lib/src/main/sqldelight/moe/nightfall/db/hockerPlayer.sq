@@ -1,3 +1,14 @@
+CREATE TABLE schema (
+    version INTEGER AS Int NOT NULL
+);
+
+CREATE TABLE hockeyPlayer (
+  player_number INTEGER NOT NULL,
+  full_name TEXT NOT NULL
+);
+
+CREATE INDEX hockeyPlayer_full_name ON hockeyPlayer(full_name);
+
 selectAll:
 SELECT *
 FROM hockeyPlayer;

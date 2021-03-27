@@ -38,7 +38,6 @@ dependencies {
 sqldelight {
     database("Database") {
         packageName = "moe.nightfall.db"
-//        deriveSchemaFromMigrations = true
 
 //        schemaOutputDirectory = file("src/main/sqldelight/databases")
     }
