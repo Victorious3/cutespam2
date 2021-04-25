@@ -8,7 +8,7 @@ plugins {
 }
 
 fun org.jetbrains.kotlin.gradle.plugin.KotlinDependencyHandler.sharedDependencies() {
-    implementation("com.github.kilianB:JImageHash:_")
+//    implementation("com.github.kilianB:JImageHash:_")
     implementation("org.jsoup:jsoup:_")
     api(KotlinX.coroutines.slf4j)
 }
