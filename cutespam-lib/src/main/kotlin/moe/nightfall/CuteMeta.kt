@@ -15,10 +15,6 @@ enum class Rating(val label: String) {
         val Nudity = n
         val Questionable = q
         val Explicit = e
-        fun ratingOf(rating: String): Rating {
-            return valueOf(rating)
-//            return values().find { it.name == rating } ?: throw IllegalArgumentException()
-        }
     }
 }
 

@@ -28,14 +28,6 @@ enum class Service(
 }
 
 sealed class Provider {
-    @Deprecated("use service.provider instead")
-    val providers = listOf(
-        Direct,
-        DanbooruPost,
-        SafebooruPost,
-        Zerochan
-    )
-
     abstract val regex: Regex
     abstract val service: Service
     open fun fetchAll(url: String, match: MatchGroupCollection): List<CuteMeta> {
